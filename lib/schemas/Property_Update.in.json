@@ -1,0 +1,79 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "serviceName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "pattern": "^[a-zA-Z](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$"
+        },
+        "propId": {
+            "required": true,
+            "type": "string",
+            "maxLength": 256,
+            "pattern": "^[^*#&+:<>?]+$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Property update Parameters.",
+            "properties": {
+                "properties": {
+                    "description": "Property entity Update contract properties.",
+                    "x-ms-client-flatten": true,
+                    "allOf": [
+                        {
+                            "description": "Property Entity Base Parameters set.",
+                            "properties": {
+                                "secret": {
+                                    "description": "Determines whether the value is a secret and should be encrypted or not. Default value is false.",
+                                    "type": "boolean"
+                                },
+                                "tags": {
+                                    "description": "Optional tags that when provided can be used to filter the property list.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "maxItems": 32,
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    ],
+                    "properties": {
+                        "displayName": {
+                            "description": "Unique name of Property. It may contain only letters, digits, period, dash, and underscore characters.",
+                            "maxLength": 256,
+                            "minLength": 1,
+                            "pattern": "^[A-Za-z0-9-._]+$",
+                            "type": "string"
+                        },
+                        "value": {
+                            "description": "Value of the property. Can contain policy expressions. It may not be empty or consist only of whitespace.",
+                            "maxLength": 4096,
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "If_Match": {
+            "required": true,
+            "type": "string"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
